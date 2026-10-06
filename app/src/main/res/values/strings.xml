@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EntreLinhas</string>
+    <string name="saudacao_abertura">Olá Suuh</string>
+
+    <string name="icone_descricao">Ícone do EntreLinhas</string>
+
+    <string-array name="frases_abertura">
+        <item>Cada ponto conta uma história.</item>
+        <item>Feito à mão, feito com carinho.</item>
+        <item>Uma linha de cada vez.</item>
+        <item>Entre uma linha e outra, nasce uma ideia.</item>
+        <item>Hoje é dia de criar coisas lindas.</item>
+        <item>Organizar é uma forma de cuidar.</item>
+        <item>Cada pedido é um sonho sendo costurado.</item>
+        <item>Pequenos detalhes fazem grandes obras.</item>
+        <item>Seu ateliê, tudo em ordem.</item>
+        <item>Bora transformar linhas em histórias!</item>
+    </string-array>
 </resources>
