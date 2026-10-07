@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import br.edu.ifpe.entrelinhas.ui.features.abertura.TelaAbertura
-import br.edu.ifpe.entrelinhas.ui.features.home.HomePlaceholderScreen
+import br.edu.ifpe.entrelinhas.ui.features.home.TelaPedidos
 
 @Composable
 fun NavGraph() {
@@ -20,7 +20,7 @@ fun NavGraph() {
         }
 
         composable(NavTarget.Home.route) {
-            HomePlaceholderScreen()
+            TelaPedidos()
         }
     }
 }
