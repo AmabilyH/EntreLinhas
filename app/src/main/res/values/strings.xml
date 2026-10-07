@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">EntreLinhas</string>
+    <string name="app_subtitulo">Ateliê da Suuh</string>
     <string name="saudacao_abertura">Olá Suuh</string>
-
     <string name="icone_descricao">Ícone do EntreLinhas</string>
 
+    <!-- Frases da Tela de Abertura (Splash Screen) -->
     <string-array name="frases_abertura">
         <item>Cada ponto conta uma história.</item>
         <item>Feito à mão, feito com carinho.</item>
@@ -17,4 +18,38 @@
         <item>Seu ateliê, tudo em ordem.</item>
         <item>Bora transformar linhas em histórias!</item>
     </string-array>
+
+    <!-- Indicadores de Pedidos Abertos -->
+    <string name="n_abertos">%1$d abertos</string>
+    <string name="um_aberto">1 aberto</string>
+
+    <!-- Tela Principal / Financeiro -->
+    <string name="faturamento_titulo">Faturamento do mês</string>
+    <string name="ganho">Ganho</string>
+    <string name="gasto">Gasto</string>
+    <string name="lucro">Lucro</string>
+    <string name="lucro_percentual">%1$s de lucro</string>
+
+    <!-- Estoque e Busca -->
+    <string name="estoque_baixo">Estoque baixo:</string>
+    <string name="busca_dica">Pesquisar por nome ou data...</string>
+
+    <!-- Lista de Pedidos -->
+    <string name="pedidos_titulo">Pedidos</string>
+    <string name="novo_pedido">Novo pedido</string>
+    <string name="em_breve">Em breve</string>
+    <string name="lista_vazia">Nenhum pedido por aqui ainda. Toque em \'Novo pedido\' para anotar o primeiro.</string>
+
+    <!-- Status e Ações do Pedido -->
+    <string name="pago">Pago</string>
+    <string name="nao_pago">Não pago</string>
+    <string name="para_fazer">Para fazer</string>
+    <string name="entregue">Entregue</string>
+    <string name="excluir_pedido">Excluir pedido</string>
+
+    <!-- Abas de Navegação -->
+    <string name="aba_pedidos">Pedidos</string>
+    <string name="aba_estoque">Estoque</string>
+    <string name="aba_produtos">Produtos</string>
+    <string name="em_construcao">Em construção</string>
 </resources>
