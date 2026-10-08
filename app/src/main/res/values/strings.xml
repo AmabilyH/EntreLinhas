@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">EntreLinhas</string>
     <string name="app_subtitulo">Ateliê da Suuh</string>
-    <string name="saudacao_abertura">Olá Suuh</string>
+    <string name="saudacao_abertura">Olá Suuh!</string>
     <string name="icone_descricao">Ícone do EntreLinhas</string>
 
     <!-- Frases da Tela de Abertura (Splash Screen) -->
@@ -29,6 +29,11 @@
     <string name="gasto">Gasto</string>
     <string name="lucro">Lucro</string>
     <string name="lucro_percentual">%1$s de lucro</string>
+    <!-- Estoque e Produtos -->
+    <string name="novo_material">Material</string>
+    <string name="estoque_vazio">Nenhum material cadastrado ainda.</string>
+    <string name="novo_produto">Produto</string>
+    <string name="produtos_vazio">Nenhum produto cadastrado ainda.</string>
 
     <!-- Estoque e Busca -->
     <string name="estoque_baixo">Estoque baixo:</string>

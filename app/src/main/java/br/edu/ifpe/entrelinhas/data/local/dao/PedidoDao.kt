@@ -3,7 +3,6 @@ package br.edu.ifpe.entrelinhas.data.local.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
@@ -24,9 +23,7 @@ interface PedidoDao {
     @Query("SELECT COUNT(*) FROM Pedido WHERE entregue = 0")
     fun contarAbertos(): Flow<Int>
 
-    // --- FUNÇÕES ESSENCIAIS QUE ESTAVAM FALTANDO ---
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun inserir(pedido: Pedido): Long
 
     @Update
