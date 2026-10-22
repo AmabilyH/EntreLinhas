@@ -4,10 +4,10 @@
 |---|---|
 | **App** | EntreLinhas |
 | **Grupo** | |
-| **Autores** | Amabily, Analy, Fábio Matheus |
+| **Autores** | Amabily, Analy, Fábio Mateus |
 | **Versão do documento** | 1.0 |
-| **Última atualização** | 06/10/2026 |
-| **Status** | (x) Rascunho ( ) Em revisão ( ) Aprovado |
+| **Última atualização** | 22/10/2026 |
+| **Status** | () Rascunho (x) Em revisão ( ) Aprovado |
 
 ---
 
@@ -287,10 +287,10 @@ app/src/main/java/br/edu/ifpe/entrelinhas/
 |---|---|---|---|
 | M1 — Canvas + repositório | 16/09 | grupo | ✅ |
 | M2 — PRD aprovado + telas | 30/09 | grupo | ⏳ |
-| M3 — Funcionalidade base | 21/10 | | ⏳ |
-| M4 — Dados e erros tratados | 11/11 | | ⏳ |
-| M5 — Identidade + `.apk` testado | 25/11 | | ⏳ |
-| M6 — `.aab` + loja + README | 02/12 | | ⏳ |
+| M3 — Funcionalidade base | 21/10 |Amabily | ⏳ |
+| M4 — Dados e erros tratados | 11/11 |Fabio Mateus | ⏳ |
+| M5 — Identidade + `.apk` testado | 25/11 |Analy | ⏳ |
+| M6 — `.aab` + loja + README | 02/12 |Analy e Fabio Mateus | ⏳ |
 | **Entrega e apresentação** | **10/12** | grupo | ⏳ |
 
 ---
@@ -323,10 +323,10 @@ A implementação usa o **Gemini no Android Studio**. Este PRD é o documento qu
 
 | Parte do código | Responsável |
 |---|---|
-| Telas (`ui/`) | |
-| Dados (`data/`) | |
-| Identidade visual e recursos | |
-| Build e artefatos de loja | |
+| Telas (`ui/`) | Amabliy|
+| Dados (`data/`) |Fabio Mateus |
+| Identidade visual e recursos |Analy |
+| Build e artefatos de loja |Analy e Fabio Mateus |
 
 **Decisões que o grupo tomou contra a sugestão da IA** _(preencher ao longo do projeto — isso conta a favor na avaliação)_:
 
@@ -339,4 +339,5 @@ A implementação usa o **Gemini no Android Studio**. Este PRD é o documento qu
 | Versão | Data | Autor | O que mudou |
 |---|---|---|---|
 | 1.0 | 06/10/2026 | Amabily, Analy, Fábio Matheus | Versão inicial |
-| | | | |
+|1.1 |22/10/2026 |Fabio Mateus |Divisão do Código, Responsáveis dos marcos e ajustes após o feedback |
+
