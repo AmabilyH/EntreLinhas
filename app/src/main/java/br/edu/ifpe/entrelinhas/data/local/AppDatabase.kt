@@ -11,12 +11,14 @@ import br.edu.ifpe.entrelinhas.data.local.dao.MaterialDao
 import br.edu.ifpe.entrelinhas.data.local.dao.PedidoDao
 import br.edu.ifpe.entrelinhas.data.local.dao.ProdutoDao
 import br.edu.ifpe.entrelinhas.data.local.dao.TipoMaterialDao
+import br.edu.ifpe.entrelinhas.data.local.dao.CategoriaDao
 import br.edu.ifpe.entrelinhas.data.local.entity.Cliente
 import br.edu.ifpe.entrelinhas.data.local.entity.CompraMaterial
 import br.edu.ifpe.entrelinhas.data.local.entity.ItemPedido
 import br.edu.ifpe.entrelinhas.data.local.entity.Material
 import br.edu.ifpe.entrelinhas.data.local.entity.Pedido
 import br.edu.ifpe.entrelinhas.data.local.entity.Produto
+import br.edu.ifpe.entrelinhas.data.local.entity.Categoria
 import br.edu.ifpe.entrelinhas.data.local.entity.TipoMaterial
 
 @Database(
@@ -27,9 +29,10 @@ import br.edu.ifpe.entrelinhas.data.local.entity.TipoMaterial
         Cliente::class,
         Produto::class,
         Pedido::class,
-        ItemPedido::class
+        ItemPedido::class,
+        Categoria::class
     ],
-    version = 2,
+    version = 3,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -43,6 +46,8 @@ abstract class AppDatabase : RoomDatabase() {
 
     abstract fun pedidoDao(): PedidoDao
     abstract fun itemPedidoDao(): ItemPedidoDao
+
+    abstract fun categoriaDao(): CategoriaDao
 
     companion object {
         @Volatile
