@@ -335,9 +335,13 @@ Regra "Um commit por entidade, DAO ou tela"
 | Identidade visual e recursos |Analy |
 | Build e artefatos de loja |Analy e Fabio Mateus |
 
-**Decisões que o grupo tomou contra a sugestão da IA** _(preencher ao longo do projeto — isso conta a favor na avaliação)_:
+**Decisões que o grupo tomou contra a sugestão da IA** a IA sugeriu Double para preços; mantivemos centavos em Long para evitar erro de arredondamento:
 
--
+- Um prompt pede uma coisa só (uma entidade, um DAO ou uma tela).
+- Um commit por entidade, DAO e/ou tela, de preferência abaixo de 200 linhas.
+- Antes de commitar, rodamos o app e lemos o código gerado.
+- Se o Gemini mexer em arquivos que não pedimos, desfazemos e pedimos de novo.
+
 
 ---
 
