@@ -311,15 +311,22 @@ app/src/main/java/br/edu/ifpe/entrelinhas/
 
 A implementação usa o **Gemini no Android Studio**. Este PRD é o documento que diz à IA o que construir — quanto mais preciso ele estiver, menos a IA inventa. Regras completas em [`docs/USO_DE_IA.md`](docs/USO_DE_IA.md).
 
-**Recursos que vamos usar:** ( ) Chat ( ) Agent Mode ( ) Explain Code ( ) Ask Gemini no Logcat ( ) Generate Unit Tests ( ) Transform UI
+**Recursos que vamos usar:** (x) Chat (x) Agent Mode ( ) Explain Code ( ) Ask Gemini no Logcat ( ) Generate Unit Tests ( ) Transform UI
 
-**Regras que colocamos no `AGENTS.md`** _(resumo — o arquivo fica na raiz do repositório)_:
+Regra "Um commit por entidade, DAO ou tela"
 
 - Usar sempre Kotlin, Jetpack Compose e Room, e manter a estrutura de pacotes do projeto.
 - Fazer uma funcionalidade por vez, em passos pequenos, explicando o que mudou em cada arquivo.
 - Não criar telas, dependências ou funcionalidades que não estejam no Canvas e no PRD.
 
 **Divisão do perímetro explicável** — quem responde por explicar o quê na apresentação:
+
+| Parte | O que foi gerado | Recurso |
+|---|---|---|
+| Boilerplate | [projeto base, tema, navegação com 3 abas] | [Agent Mode] |
+| Entidades de pedido | `Cliente`, `Pedido`, `ItemPedido`, `Produto`, com DAOs | [Agent Mode] |
+| Telas | Pedidos, Estoque e Produtos ligadas ao Room | [Agent Mode] |
+
 
 | Parte do código | Responsável |
 |---|---|
