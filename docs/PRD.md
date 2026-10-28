@@ -4,10 +4,10 @@
 |---|---|
 | **App** | EntreLinhas |
 | **Grupo** | |
-| **Autores** | Amabily, Analy, Fábio Mateus |
-| **Versão do documento** | 1.0 |
-| **Última atualização** | 22/10/2026 |
-| **Status** | () Rascunho (x) Em revisão ( ) Aprovado |
+| **Autores** | Amabily, Analy, Fábio Matheus |
+| **Versão do documento** | 1.2 |
+| **Última atualização** | 28/10/2026 |
+| **Status** | ( ) Rascunho (x) Em revisão ( ) Aprovado |
 
 ---
 
@@ -287,10 +287,10 @@ app/src/main/java/br/edu/ifpe/entrelinhas/
 |---|---|---|---|
 | M1 — Canvas + repositório | 16/09 | grupo | ✅ |
 | M2 — PRD aprovado + telas | 30/09 | grupo | ⏳ |
-| M3 — Funcionalidade base | 21/10 |Amabily | ⏳ |
-| M4 — Dados e erros tratados | 11/11 |Fabio Mateus | ⏳ |
-| M5 — Identidade + `.apk` testado | 25/11 |Analy | ⏳ |
-| M6 — `.aab` + loja + README | 02/12 |Analy e Fabio Mateus | ⏳ |
+| M3 — Funcionalidade base | 21/10 | Amabily | ⏳ |
+| M4 — Dados e erros tratados | 11/11 | Fábio Matheus | ⏳ |
+| M5 — Identidade + `.apk` testado | 25/11 | Analy | ⏳ |
+| M6 — `.aab` + loja + README | 02/12 | Analy e Fábio Matheus | ⏳ |
 | **Entrega e apresentação** | **10/12** | grupo | ⏳ |
 
 ---
@@ -313,42 +313,7 @@ A implementação usa o **Gemini no Android Studio**. Este PRD é o documento qu
 
 **Recursos que vamos usar:** (x) Chat (x) Agent Mode ( ) Explain Code ( ) Ask Gemini no Logcat ( ) Generate Unit Tests ( ) Transform UI
 
-Regra "Um commit por entidade, DAO ou tela"
+**Regras que colocamos no `AGENTS.md`** _(resumo — o arquivo fica na raiz do repositório)_:
 
 - Usar sempre Kotlin, Jetpack Compose e Room, e manter a estrutura de pacotes do projeto.
-- Fazer uma funcionalidade por vez, em passos pequenos, explicando o que mudou em cada arquivo.
-- Não criar telas, dependências ou funcionalidades que não estejam no Canvas e no PRD.
-
-**Divisão do perímetro explicável** — quem responde por explicar o quê na apresentação:
-
-| Parte | O que foi gerado | Recurso |
-|---|---|---|
-| Boilerplate | [projeto base, tema, navegação com 3 abas] | [Agent Mode] |
-| Entidades de pedido | `Cliente`, `Pedido`, `ItemPedido`, `Produto`, com DAOs | [Agent Mode] |
-| Telas | Pedidos, Estoque e Produtos ligadas ao Room | [Agent Mode] |
-
-
-| Parte do código | Responsável |
-|---|---|
-| Telas (`ui/`) | Amabliy|
-| Dados (`data/`) |Fabio Mateus |
-| Identidade visual e recursos |Analy |
-| Build e artefatos de loja |Analy e Fabio Mateus |
-
-**Decisões que o grupo tomou contra a sugestão da IA** a IA sugeriu Double para preços; mantivemos centavos em Long para evitar erro de arredondamento:
-
-- Um prompt pede uma coisa só (uma entidade, um DAO ou uma tela).
-- Um commit por entidade, DAO e/ou tela, de preferência abaixo de 200 linhas.
-- Antes de commitar, rodamos o app e lemos o código gerado.
-- Se o Gemini mexer em arquivos que não pedimos, desfazemos e pedimos de novo.
-
-
----
-
-## 15. Histórico de versões deste documento
-
-| Versão | Data | Autor | O que mudou |
-|---|---|---|---|
-| 1.0 | 06/10/2026 | Amabily, Analy, Fábio Matheus | Versão inicial |
-|1.1 |22/10/2026 |Fabio Mateus |Divisão do Código, Responsáveis dos marcos e ajustes após o feedback |
-
+- Fazer uma funcio
