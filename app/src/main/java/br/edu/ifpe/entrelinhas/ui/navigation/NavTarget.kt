@@ -6,4 +6,6 @@ sealed class NavTarget(val route: String) {
     data object Home : NavTarget("home")
     data object Estoque : NavTarget("estoque")
     data object Produtos : NavTarget("produtos")
+
+    data object Categorias : NavTarget("categorias")
 }

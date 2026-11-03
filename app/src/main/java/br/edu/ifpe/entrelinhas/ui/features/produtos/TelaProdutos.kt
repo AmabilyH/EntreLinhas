@@ -33,6 +33,7 @@ import br.edu.ifpe.entrelinhas.ui.navigation.irParaAba
 import br.edu.ifpe.entrelinhas.ui.theme.TextoEscuro
 import br.edu.ifpe.entrelinhas.ui.theme.TextoSecundario
 import br.edu.ifpe.entrelinhas.ui.util.formatarReais
+import androidx.compose.material3.TextButton
 
 // Aba Produtos: lista os produtos e permite cadastrar um novo.
 @Composable
@@ -65,6 +66,12 @@ fun TelaProdutos(
                     botao = stringResource(R.string.novo_produto),
                     onClick = { mostrarDialogo = true }
                 )
+            }
+
+            item {
+                TextButton(onClick = { navController.navigate(NavTarget.Categorias.route) }) {
+                    Text(stringResource(R.string.ver_categorias))
+                }
             }
 
             if (produtos.isEmpty()) {
