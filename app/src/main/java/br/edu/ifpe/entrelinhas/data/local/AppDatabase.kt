@@ -20,6 +20,8 @@ import br.edu.ifpe.entrelinhas.data.local.entity.Pedido
 import br.edu.ifpe.entrelinhas.data.local.entity.Produto
 import br.edu.ifpe.entrelinhas.data.local.entity.Categoria
 import br.edu.ifpe.entrelinhas.data.local.entity.TipoMaterial
+import br.edu.ifpe.entrelinhas.data.local.dao.ProdutoMaterialDao
+import br.edu.ifpe.entrelinhas.data.local.entity.ProdutoMaterial
 
 @Database(
     entities = [
@@ -30,9 +32,10 @@ import br.edu.ifpe.entrelinhas.data.local.entity.TipoMaterial
         Produto::class,
         Pedido::class,
         ItemPedido::class,
-        Categoria::class
+        Categoria::class,
+        ProdutoMaterial::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -48,6 +51,8 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun itemPedidoDao(): ItemPedidoDao
 
     abstract fun categoriaDao(): CategoriaDao
+
+    abstract fun produtoMaterialDao(): ProdutoMaterialDao
 
     companion object {
         @Volatile
