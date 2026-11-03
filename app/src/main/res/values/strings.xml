@@ -19,6 +19,25 @@
         <item>Bora transformar linhas em histórias!</item>
     </string-array>
 
+    <!-- Categorias -->
+    <string name="categorias_titulo">Categorias</string>
+    <string name="categorias_vazio">Nenhuma categoria cadastrada ainda.</string>
+    <string name="botao_categoria">Categoria</string>
+    <string name="ver_categorias">Categorias</string>
+    <string name="nova_categoria">Nova categoria</string>
+    <string name="editar_categoria">Editar categoria</string>
+    <string name="categoria_nome">Nome</string>
+    <string name="categoria_preco_combinado">Preço combinado (digitado no pedido)</string>
+    <string name="erro_nome_categoria">Dê um nome à categoria.</string>
+    <string name="erro_salvar">Não foi possível salvar. Tente novamente.</string>
+    <string name="excluir_categoria_titulo">Excluir categoria?</string>
+    <string name="excluir_categoria_msg">Tem certeza? Os pedidos antigos continuam salvos.</string>
+    <string name="salvar">Salvar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="editar">Editar</string>
+    <string name="excluir">Excluir</string>
+    <string name="voltar">Voltar</string>
+
     <!-- Indicadores de Pedidos Abertos -->
     <string name="n_abertos">%1$d abertos</string>
     <string name="um_aberto">1 aberto</string>
@@ -29,6 +48,7 @@
     <string name="gasto">Gasto</string>
     <string name="lucro">Lucro</string>
     <string name="lucro_percentual">%1$s de lucro</string>
+
     <!-- Estoque e Produtos -->
     <string name="novo_material">Material</string>
     <string name="estoque_vazio">Nenhum material cadastrado ainda.</string>
