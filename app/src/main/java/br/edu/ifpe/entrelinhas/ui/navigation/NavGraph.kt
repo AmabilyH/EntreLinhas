@@ -8,6 +8,7 @@ import br.edu.ifpe.entrelinhas.ui.features.abertura.TelaAbertura
 import br.edu.ifpe.entrelinhas.ui.features.estoque.TelaEstoque
 import br.edu.ifpe.entrelinhas.ui.features.home.TelaPedidos
 import br.edu.ifpe.entrelinhas.ui.features.produtos.TelaProdutos
+import br.edu.ifpe.entrelinhas.ui.features.categorias.TelaCategorias
 
 @Composable
 fun NavGraph() {
@@ -31,6 +32,10 @@ fun NavGraph() {
 
         composable(NavTarget.Produtos.route) {
             TelaProdutos(navController = navController)
+        }
+
+        composable(NavTarget.Categorias.route) {
+            TelaCategorias(navController = navController)
         }
     }
 }
