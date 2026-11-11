@@ -1,6 +1,7 @@
 package br.edu.ifpe.entrelinhas.ui.features.home
 
 import androidx.compose.foundation.background
+import br.edu.ifpe.entrelinhas.data.local.entity.Categoria
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -92,6 +93,7 @@ private val FundoCampo = Color.White.copy(alpha = 0.85f)
 @Composable
 fun NovoPedidoSheet(
     produtos: List<Produto>,
+    categorias: List<Categoria>,
     clientes: List<Cliente>,
     onFechar: () -> Unit,
     onSalvar: (NovoPedidoDados) -> Unit
@@ -105,7 +107,7 @@ fun NovoPedidoSheet(
     var mostrarCalendario by remember { mutableStateOf(false) }
 
     // Item que está sendo montado
-    var categoria by remember { mutableStateOf<String?>(null) }
+    var categoria by remember { mutableStateOf<Categoria?>(null) }
     var produto by remember { mutableStateOf<Produto?>(null) }
     var quantidade by remember { mutableStateOf("1") }
     var preco by remember { mutableStateOf("") }
@@ -114,9 +116,12 @@ fun NovoPedidoSheet(
     var itens by remember { mutableStateOf(listOf<ItemPedido>()) }
     var observacao by remember { mutableStateOf("") }
 
-    val categorias = remember(produtos) { produtos.map { it.categoria }.distinct() }
+    // Só aparecem as categorias que já têm produto cadastrado
+    val categoriasComProduto = remember(produtos, categorias) {
+        categorias.filter { c -> produtos.any { it.categoriaId == c.id } }
+    }
     val produtosDaCategoria = remember(produtos, categoria) {
-        produtos.filter { it.categoria == categoria }
+        produtos.filter { it.categoriaId == categoria?.id }
     }
     val total = itens.sumOf { it.quantidade * it.precoUnitario }
 
@@ -128,6 +133,7 @@ fun NovoPedidoSheet(
         sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true),
         shape = formaFolha,
         containerColor = Color.Transparent,
+        scrimColor = Color.Black.copy(alpha = 0.18f),
         dragHandle = null
     ) {
         Box(
@@ -247,13 +253,13 @@ fun NovoPedidoSheet(
 
                     Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         Seletor(
-                            escolhido = categoria,
+                            escolhido = categoria?.nome,
                             dica = "Categoria",
-                            opcoes = categorias,
-                            habilitado = categorias.isNotEmpty(),
+                            opcoes = categoriasComProduto.map { it.nome },
+                            habilitado = categoriasComProduto.isNotEmpty(),
                             modifier = Modifier.weight(1f),
                             onEscolher = { indice ->
-                                categoria = categorias[indice]
+                                categoria = categoriasComProduto[indice]
                                 produto = null
                                 preco = ""
                             }

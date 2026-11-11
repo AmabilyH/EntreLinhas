@@ -81,6 +81,7 @@ fun TelaPedidos(
     val abertos by viewModel.abertos.collectAsState()
     val estoqueBaixo by viewModel.estoqueBaixo.collectAsState()
     val produtos by viewModel.produtos.collectAsState()
+    val categorias by viewModel.categorias.collectAsState()
     val clientes by viewModel.clientes.collectAsState()
 
     var mostrarNovoPedido by remember { mutableStateOf(false) }
@@ -129,6 +130,7 @@ fun TelaPedidos(
         if (mostrarNovoPedido) {
             NovoPedidoSheet(
                 produtos = produtos,
+                categorias = categorias,
                 clientes = clientes,
                 onFechar = { mostrarNovoPedido = false },
                 onSalvar = { dados ->
