@@ -35,7 +35,7 @@ import br.edu.ifpe.entrelinhas.data.local.entity.ProdutoMaterial
         Categoria::class,
         ProdutoMaterial::class
     ],
-    version = 4,
+    version = 5,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

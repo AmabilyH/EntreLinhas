@@ -31,7 +31,7 @@
     <string name="erro_nome_categoria">Dê um nome à categoria.</string>
     <string name="erro_salvar">Não foi possível salvar. Tente novamente.</string>
     <string name="excluir_categoria_titulo">Excluir categoria?</string>
-    <string name="excluir_categoria_msg">Tem certeza? Os pedidos antigos continuam salvos.</string>
+    <string name="excluir_categoria_msg">Tem certeza? Os produtos desta categoria também serão excluídos, mas os pedidos antigos continuam salvos.</string>
     <string name="salvar">Salvar</string>
     <string name="cancelar">Cancelar</string>
     <string name="editar">Editar</string>
@@ -54,6 +54,14 @@
     <string name="estoque_vazio">Nenhum material cadastrado ainda.</string>
     <string name="novo_produto">Produto</string>
     <string name="produtos_vazio">Nenhum produto cadastrado ainda.</string>
+    <string name="produto_dialog_titulo">Novo produto</string>
+    <string name="produto_nome">Nome</string>
+    <string name="produto_categoria">Categoria</string>
+    <string name="produto_preco">Preço (R$)</string>
+    <string name="produto_sem_categorias">Cadastre uma categoria antes de criar um produto.</string>
+    <string name="erro_nome_produto">Dê um nome ao produto.</string>
+    <string name="erro_categoria_produto">Escolha uma categoria.</string>
+    <string name="erro_valor_invalido">Informe um valor válido.</string>
 
     <!-- Estoque e Busca -->
     <string name="estoque_baixo">Estoque baixo:</string>

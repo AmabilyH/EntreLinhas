@@ -1,6 +1,7 @@
 package br.edu.ifpe.entrelinhas.ui.features.produtos
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -42,7 +43,10 @@ fun TelaProdutos(
     viewModel: ProdutosViewModel = viewModel()
 ) {
     val produtos by viewModel.produtos.collectAsState()
+    val categorias by viewModel.categorias.collectAsState()
+    val erro by viewModel.erro.collectAsState()
     var mostrarDialogo by remember { mutableStateOf(false) }
+    val nomesDasCategorias = remember(categorias) { categorias.associate { it.id to it.nome } }
 
     TelaComBarra(
         rotaAtual = NavTarget.Produtos.route,
@@ -73,6 +77,15 @@ fun TelaProdutos(
                     Text(stringResource(R.string.ver_categorias))
                 }
             }
+            if (erro) {
+                item {
+                    Text(
+                        text = stringResource(R.string.erro_salvar),
+                        color = MaterialTheme.colorScheme.error,
+                        fontSize = 14.sp
+                    )
+                }
+            }
 
             if (produtos.isEmpty()) {
                 item {
@@ -101,7 +114,7 @@ fun TelaProdutos(
                             color = TextoEscuro
                         )
                         Text(
-                            text = "${produto.categoria} · ${formatarReais(produto.preco)}",
+                            text = "${nomesDasCategorias[produto.categoriaId].orEmpty()} · ${formatarReais(produto.preco)}",
                             fontSize = 13.sp,
                             color = TextoSecundario
                         )
@@ -112,8 +125,9 @@ fun TelaProdutos(
 
         if (mostrarDialogo) {
             NovoProdutoDialog(
+                categorias = categorias,
                 onFechar = { mostrarDialogo = false },
-                onSalvar = { nome, categoria, preco -> viewModel.salvar(nome, categoria, preco) }
+                onSalvar = { nome, categoriaId, preco -> viewModel.salvar(nome, categoriaId, preco) }
             )
         }
     }

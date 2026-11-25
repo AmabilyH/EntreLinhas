@@ -2,6 +2,7 @@
 package br.edu.ifpe.entrelinhas.ui.features.home
 
 import android.app.Application
+import br.edu.ifpe.entrelinhas.data.local.entity.Categoria
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.room.withTransaction
@@ -39,6 +40,9 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
         .catch { emit(emptyList()) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
 
+    val categorias: StateFlow<List<Categoria>> = banco.categoriaDao().listar()
+        .catch { emit(emptyList()) }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())
     val clientes: StateFlow<List<Cliente>> = banco.clienteDao().listar()
         .catch { emit(emptyList()) }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), emptyList())

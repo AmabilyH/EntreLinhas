@@ -16,6 +16,6 @@ interface ProdutoDao {
     suspend fun atualizar(produto: Produto)
     @Delete
     suspend fun excluir(produto: Produto)
-    @Query("SELECT * FROM Produto ORDER BY categoria, nome")
+    @Query("SELECT * FROM Produto ORDER BY nome")
     fun listar(): Flow<List<Produto>>
 }
