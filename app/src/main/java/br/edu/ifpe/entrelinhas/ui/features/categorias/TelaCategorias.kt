@@ -139,7 +139,7 @@ fun TelaCategorias(
         }
 
         if (mostrarNova) {
-            CategoriaDialog(
+            CategoriaSheet(
                 categoria = null,
                 onFechar = { mostrarNova = false },
                 onSalvar = { nome, precoCombinado -> viewModel.salvar(nome, precoCombinado) }
@@ -147,7 +147,7 @@ fun TelaCategorias(
         }
 
         emEdicao?.let { atual ->
-            CategoriaDialog(
+            CategoriaSheet(
                 categoria = atual,
                 onFechar = { emEdicao = null },
                 onSalvar = { nome, precoCombinado ->

@@ -62,6 +62,18 @@
     <string name="erro_nome_produto">Dê um nome ao produto.</string>
     <string name="erro_categoria_produto">Escolha uma categoria.</string>
     <string name="erro_valor_invalido">Informe um valor válido.</string>
+    <string name="produto_nome_dica">Ex.: Broche 32 mm</string>
+    <string name="produto_salvar">Salvar produto</string>
+    <string name="produto_materiais_titulo">Materiais usados</string>
+    <string name="produto_material_escolha">Material</string>
+    <string name="produto_material_quantidade">Qtd. por unidade</string>
+    <string name="produto_adicionar_material">Adicionar material</string>
+    <string name="produto_sem_materiais">Nenhum material no estoque. Cadastre na aba Estoque para vincular ao produto.</string>
+    <string name="produto_usa">Usa: %1$s</string>
+    <string name="categoria_nome_dica">Ex.: Broches</string>
+    <string name="categoria_salvar">Salvar categoria</string>
+    <string name="remover">Remover</string>
+    <string name="fechar">Fechar</string>
 
     <!-- Estoque e Busca -->
     <string name="estoque_baixo">Estoque baixo:</string>

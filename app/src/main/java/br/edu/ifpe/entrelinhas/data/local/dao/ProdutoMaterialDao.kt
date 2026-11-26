@@ -29,6 +29,9 @@ interface ProdutoMaterialDao {
     @Query("SELECT * FROM ProdutoMaterial WHERE produtoId = :produtoId")
     fun listarPorProduto(produtoId: Long): Flow<List<ProdutoMaterial>>
 
+    @Query("SELECT * FROM ProdutoMaterial")
+    fun listarTodos(): Flow<List<ProdutoMaterial>>
+
     // Para o desconto de estoque ao salvar um pedido (RF10): leitura única.
     @Query("SELECT * FROM ProdutoMaterial WHERE produtoId = :produtoId")
     suspend fun buscarPorProduto(produtoId: Long): List<ProdutoMaterial>
