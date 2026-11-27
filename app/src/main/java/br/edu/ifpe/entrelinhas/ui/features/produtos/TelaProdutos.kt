@@ -1,6 +1,11 @@
 package br.edu.ifpe.entrelinhas.ui.features.produtos
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.ui.Alignment
+import br.edu.ifpe.entrelinhas.ui.features.components.Rotulo
+import br.edu.ifpe.entrelinhas.ui.theme.RoxoProfundo
+import br.edu.ifpe.entrelinhas.ui.util.formatarQuantidade
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -46,8 +51,9 @@ fun TelaProdutos(
     val categorias by viewModel.categorias.collectAsState()
     val erro by viewModel.erro.collectAsState()
     var mostrarDialogo by remember { mutableStateOf(false) }
-    val nomesDasCategorias = remember(categorias) { categorias.associate { it.id to it.nome } }
-
+    val materiais by viewModel.materiais.collectAsState()
+    val materiaisPorProduto by viewModel.materiaisPorProduto.collectAsState()
+    val materiaisPorId = remember(materiais) { materiais.associateBy { it.id } }
     TelaComBarra(
         rotaAtual = NavTarget.Produtos.route,
         onNavegar = { rota -> navController.irParaAba(rota) }
@@ -100,34 +106,61 @@ fun TelaProdutos(
                     )
                 }
             } else {
-                items(produtos, key = { it.id }) { produto ->
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .cartao(28.dp)
-                            .padding(20.dp)
-                    ) {
-                        Text(
-                            text = produto.nome,
-                            fontSize = 18.sp,
-                            fontWeight = FontWeight.SemiBold,
-                            color = TextoEscuro
-                        )
-                        Text(
-                            text = "${nomesDasCategorias[produto.categoriaId].orEmpty()} · ${formatarReais(produto.preco)}",
-                            fontSize = 13.sp,
-                            color = TextoSecundario
-                        )
+                categorias.forEach { categoria ->
+                    val daCategoria = produtos.filter { it.categoriaId == categoria.id }
+                    if (daCategoria.isNotEmpty()) {
+                        item(key = "categoria-${categoria.id}") {
+                            Rotulo(categoria.nome, Modifier.padding(top = 4.dp))
+                        }
+                        items(daCategoria, key = { "produto-${it.id}" }) { produto ->
+                            val usados = materiaisPorProduto[produto.id].orEmpty()
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .cartao(28.dp)
+                                    .padding(20.dp),
+                                verticalAlignment = Alignment.Top
+                            ) {
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = produto.nome,
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.SemiBold,
+                                        color = TextoEscuro
+                                    )
+                                    if (usados.isNotEmpty()) {
+                                        val resumo = usados.joinToString(", ") { item ->
+                                            val material = materiaisPorId[item.materialId]
+                                            "${material?.nome.orEmpty()} (${formatarQuantidade(item.quantidadePorUnidade)} ${material?.unidade.orEmpty()})"
+                                        }
+                                        Text(
+                                            text = stringResource(R.string.produto_usa, resumo),
+                                            fontSize = 13.sp,
+                                            color = TextoSecundario
+                                        )
+                                    }
+                                }
+                                Text(
+                                    text = formatarReais(produto.preco),
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    color = RoxoProfundo
+                                )
+                            }
+                        }
                     }
                 }
             }
         }
 
         if (mostrarDialogo) {
-            NovoProdutoDialog(
+            NovoProdutoSheet(
                 categorias = categorias,
+                materiais = materiais,
                 onFechar = { mostrarDialogo = false },
-                onSalvar = { nome, categoriaId, preco -> viewModel.salvar(nome, categoriaId, preco) }
+                onSalvar = { nome, categoriaId, preco, usados ->
+                    viewModel.salvar(nome, categoriaId, preco, usados)
+                }
             )
         }
     }
