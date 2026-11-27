@@ -92,4 +92,8 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
     fun alternarPago(pedido: Pedido) = executar {
         banco.pedidoDao().atualizar(pedido.copy(pago = !pedido.pago))
     }
+    // Toque em PARA FAZER / ENTREGUE: inverte. Entregues descem para o fim da lista.
+    fun alternarEntregue(pedido: Pedido) = executar {
+        banco.pedidoDao().atualizar(pedido.copy(entregue = !pedido.entregue))
+    }
 }
