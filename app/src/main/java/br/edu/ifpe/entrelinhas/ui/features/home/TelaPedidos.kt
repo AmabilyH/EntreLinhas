@@ -126,7 +126,10 @@ fun TelaPedidos(
                     CartaoPedido(
                         item = item,
                         onAlternarPago = {
-                            viewModel.alternarPago(item.pedido) }
+                            viewModel.alternarPago(item.pedido)},
+                        onAlternarEntregue = {
+                            viewModel.alternarEntregue(item.pedido) }
+
 
                     )
                 }
