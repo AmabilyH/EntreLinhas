@@ -53,6 +53,7 @@ fun NovoProdutoSheet(
     val msgNome = stringResource(R.string.erro_nome_produto)
     val msgCategoria = stringResource(R.string.erro_categoria_produto)
     val msgValor = stringResource(R.string.erro_valor_invalido)
+    val msgMaterial = stringResource(R.string.erro_material_obrigatorio)
 
     FolhaFormulario(
         titulo = stringResource(R.string.produto_dialog_titulo),
@@ -178,21 +179,39 @@ fun NovoProdutoSheet(
         erro?.let { mensagem ->
             Text(text = mensagem, fontSize = 13.sp, color = NegativoTexto)
         }
-
         BotaoPrincipal(
             texto = stringResource(R.string.produto_salvar),
-            habilitado = categorias.isNotEmpty(),
+            habilitado = categorias.isNotEmpty() && materiais.isNotEmpty(),
             onClick = {
                 val centavos = reaisParaCentavos(preco)
                 val escolhida = categoria
+
+                // Se ela escolheu um material e digitou a quantidade, mas não tocou em
+                // "Adicionar material", ele conta como adicionado.
+                val digitado = materialEscolhido?.let { m ->
+                    val valor = quantidade.trim().replace(",", ".").toDoubleOrNull()
+                    if (valor != null && valor > 0.0) {
+                        ProdutoMaterial(produtoId = 0, materialId = m.id, quantidadePorUnidade = valor)
+                    } else {
+                        null
+                    }
+                }
+                val materiaisFinais = if (digitado != null) {
+                    usados.filter { it.materialId != digitado.materialId } + digitado
+                } else {
+                    usados
+                }
+
                 if (nome.isBlank()) {
                     erro = msgNome
                 } else if (escolhida == null) {
                     erro = msgCategoria
                 } else if (centavos == null || centavos <= 0) {
                     erro = msgValor
+                } else if (materiaisFinais.isEmpty()) {
+                    erro = msgMaterial
                 } else {
-                    onSalvar(nome.trim(), escolhida.id, centavos, usados)
+                    onSalvar(nome.trim(), escolhida.id, centavos, materiaisFinais)
                     onFechar()
                 }
             }
