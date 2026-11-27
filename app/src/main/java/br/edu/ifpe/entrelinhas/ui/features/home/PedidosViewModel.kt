@@ -17,10 +17,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class PedidosViewModel(application: Application) : AndroidViewModel(application) {
 
     private val banco = AppDatabase.getInstance(application)
+    private val _erro = MutableStateFlow(false)
+    val erro = _erro.asStateFlow()
 
     // Se a leitura do banco falhar, a tela mostra a lista vazia em vez de fechar o app
     val pedidos: StateFlow<List<PedidoComItens>> = banco.pedidoDao().listarComItens()
@@ -72,5 +76,20 @@ class PedidosViewModel(application: Application) : AndroidViewModel(application)
                 banco.itemPedidoDao().inserirTodos(dados.itens.map { it.copy(pedidoId = pedidoId) })
             }
         }
+    }
+    // Toda operação simples no banco passa por aqui: se falhar, o app não fecha.
+    private fun executar(acao: suspend () -> Unit) {
+        viewModelScope.launch {
+            try {
+                acao()
+                _erro.value = false
+            } catch (e: Exception) {
+                _erro.value = true
+            }
+        }
+    }
+    // Toque em PAGO / NÃO PAGO: inverte. A lista se reordena sozinha.
+    fun alternarPago(pedido: Pedido) = executar {
+        banco.pedidoDao().atualizar(pedido.copy(pago = !pedido.pago))
     }
 }
