@@ -2,6 +2,7 @@ package br.edu.ifpe.entrelinhas.ui.features.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -122,7 +123,12 @@ fun TelaPedidos(
                 item { MensagemListaVazia() }
             } else {
                 items(pedidos, key = { it.pedido.id }) { item ->
-                    CartaoPedido(item = item)
+                    CartaoPedido(
+                        item = item,
+                        onAlternarPago = {
+                            viewModel.alternarPago(item.pedido) }
+
+                    )
                 }
             }
         }
@@ -218,8 +224,7 @@ private fun CartaoFaturamento(ganho: Long, gasto: Long) {
             Chip(
                 texto = stringResource(R.string.lucro_percentual, formatarPercentual(percentual)),
                 fundo = if (positivo) VerdePagoFundo else NegativoFundo,
-                corTexto = if (positivo) VerdePago else NegativoTexto
-            )
+                corTexto = if (positivo) VerdePago else NegativoTexto)
         }
 
         Row(
@@ -375,10 +380,14 @@ private fun MensagemListaVazia() {
 }
 
 @Composable
-private fun CartaoPedido(item: PedidoComItens) {
+private fun CartaoPedido(
+    item: PedidoComItens,
+    onAlternarPago: () -> Unit,
+    onAlternarEntregue: () -> Unit = {},
+    onExcluir: () -> Unit = {}
+) {
     val pedido = item.pedido
     val resumo = resumoDoPedido(item)
-
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -405,11 +414,9 @@ private fun CartaoPedido(item: PedidoComItens) {
                 color = TextoEscuro
             )
         }
-
         if (resumo.isNotEmpty()) {
             Text(text = resumo, fontSize = 15.sp, color = TextoSecundario)
         }
-
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
@@ -418,55 +425,57 @@ private fun CartaoPedido(item: PedidoComItens) {
                 modifier = Modifier.weight(1f),
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                if (pedido.pago) {
-                    Chip(
-                        texto = stringResource(R.string.pago).uppercase(),
-                        fundo = VerdePago,
-                        corTexto = Color.White
-                    )
-                } else {
-                    Chip(
-                        texto = stringResource(R.string.nao_pago).uppercase(),
-                        fundo = ChipNeutroFundo,
-                        corTexto = TextoSecundario
-                    )
-                }
-                if (pedido.entregue) {
-                    Chip(
-                        texto = stringResource(R.string.entregue).uppercase(),
-                        fundo = PrimaryPurple,
-                        corTexto = Color.White
-                    )
-                } else {
-                    Chip(
-                        texto = stringResource(R.string.para_fazer).uppercase(),
-                        fundo = ChipNeutroFundo,
-                        corTexto = TextoSecundario
-                    )
-                }
-            }
+                Chip(
+                    texto = stringResource(if (pedido.pago) R.string.pago
 
+                    else R.string.nao_pago).uppercase(),
+
+                    fundo = if (pedido.pago) VerdePago else ChipNeutroFundo,
+                    corTexto = if (pedido.pago) Color.White else
+
+                        TextoSecundario,
+
+                    onClick = onAlternarPago
+                )
+                Chip(
+                    texto = stringResource(if (pedido.entregue)
+                        R.string.entregue else R.string.para_fazer).uppercase(),
+
+                    fundo = if (pedido.entregue) PrimaryPurple else
+
+                        ChipNeutroFundo,
+
+                    corTexto = if (pedido.entregue) Color.White else
+
+                        TextoSecundario,
+
+                    onClick = onAlternarEntregue
+                )
+            }
             Text(
                 text = formatarData(pedido.data),
                 fontSize = 12.sp,
                 color = TextoSecundario,
                 maxLines = 1
             )
-            // A lixeira é só visual. Excluir pedido é o RF16.
             Icon(
                 imageVector = Icons.Default.Delete,
                 contentDescription = stringResource(R.string.excluir_pedido),
                 tint = TextoSecundario,
                 modifier = Modifier
-                    .padding(start = 10.dp)
+                    .padding(start = 4.dp)
+                    .clip(CircleShape)
+                    .clickable(onClick = onExcluir)
+                    .padding(8.dp)
                     .size(20.dp)
+
             )
         }
     }
 }
 
 @Composable
-private fun Chip(texto: String, fundo: Color, corTexto: Color) {
+private fun Chip(texto: String, fundo: Color, corTexto: Color, onClick: () -> Unit = {}) {
     Text(
         text = texto,
         fontSize = 11.sp,
@@ -475,11 +484,13 @@ private fun Chip(texto: String, fundo: Color, corTexto: Color) {
         color = corTexto,
         maxLines = 1,
         modifier = Modifier
+            .clip(CircleShape)
+            .clickable(onClick = onClick)
             .background(fundo, CircleShape)
             .padding(horizontal = 12.dp, vertical = 6.dp)
+
     )
 }
-
 // "6× Foto Polaroid · Com a frase ..." (itens, depois a observação)
 private fun resumoDoPedido(item: PedidoComItens): String {
     val itens = item.itens.joinToString(" · ") { "${it.quantidade}× ${it.descricao}" }
